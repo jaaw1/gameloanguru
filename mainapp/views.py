@@ -20,8 +20,10 @@ def game(request, game_id):
     """Show a single book and all it's reviews."""
     game = Game.objects.get(id=game_id)
     owner = game.owner
+    summary = game.summary
+    status = game.status
     #loans = Game.loan_set.order_by('-date_added')
-    context = {'game': game} #'loans': loans}
+    context = {'game': game, 'summary': summary, 'status': status} #'loans': loans}
     return render(request, 'mainapp/game.html', context)
 
 @login_required

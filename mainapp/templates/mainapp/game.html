@@ -14,8 +14,12 @@
         </p>
         Title:
         <div class="col-md-3 themed-grid-col">{{ game.name }}</div>
+        Summary of game:
+        <div class="col-md-3 themed-grid-col">{{ game.summary }}</div>
         Owner:
         <div class="col-md-3 themed-grid-col">{{ game.owner }}</div>
+        Status:
+        <div class="col-md-3 themed-grid-col">{{ game.status }}</div>
         JEE
         <div class="col-md-3 themed-grid-col">{{ game.date_added }}</div>
         {% for loan in loans %}

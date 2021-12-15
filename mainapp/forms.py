@@ -4,5 +4,5 @@ from .models import Game, Loan
 class GameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ['name']
-        labels = {'name': 'Name:'}
+        fields = ['name', 'summary', 'status']
+        labels = {'name': 'Name:', 'summary': 'Summary:', 'status' : 'status'}

@@ -7,10 +7,26 @@ class Game(models.Model):
     """A Game a user can loan"""
     name = models.CharField(max_length=200)
     
+    summary = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     
+
+    LOAN_STATUS = (
+        ('a', 'Available'),
+        ('o', 'On loan'),
+        ('r', 'Reserved'),
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=LOAN_STATUS,
+        blank=True,
+        default='a',
+        help_text='Game availability',
+    )
+
     def __str__(self):
         """This will return the title of the Book"""
         return f"{self.name[:50]}..."
