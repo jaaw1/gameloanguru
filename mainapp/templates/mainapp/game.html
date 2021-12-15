@@ -13,15 +13,21 @@
                
         </p>
         Title:
-        <div class="col-md-3 themed-grid-col">{{ game.name }}</div>
+        <div class="col-md-3 themed-grid-col">{{ game.name }} {{ game.status }}</div>
         Summary of game:
         <div class="col-md-3 themed-grid-col">{{ game.summary }}</div>
         Owner:
         <div class="col-md-3 themed-grid-col">{{ game.owner }}</div>
+        <p></p>
         Status:
-        <div class="col-md-3 themed-grid-col">{{ game.status }}</div>
-        JEE
+        {% if game.status == 'a' %}
+          Available <a href="{% url 'mainapp:new_loan' game.id %}">Loan this game:</a>
+        {% endif %}
+
+        <p></p>
+        Game added:
         <div class="col-md-3 themed-grid-col">{{ game.date_added }}</div>
+        
         {% for loan in loans %}
           <div class="card mb-3">
                   <h4 class="card-header">
@@ -29,7 +35,7 @@
                         <small><a href="{% url 'mainapp:editloan' loan.id %}">Edit loan</a></small>
                   </h4>
                   <div class="card-body">
-                        {{ loan.my_loan|linebreaks }}
+                        {{ loan.date_added|linebreaks }}
                   </div>
           </div>
                

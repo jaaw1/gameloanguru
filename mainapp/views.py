@@ -4,7 +4,7 @@ from django.http import Http404
 
 # Create your views here.
 from .models import Game, Loan
-from .forms import GameForm
+from .forms import GameForm, LoanForm
 
 def index(request):
     return render(request, 'mainapp/index.html')
@@ -69,3 +69,56 @@ def editgame(request, game_id):
 
     context = {'game' : game, 'form': form}
     return render(request, 'mainapp/editgame.html', context)
+
+def new_loan(request, game_id):
+    """Show a loan for a certain game."""
+    game = Game.objects.get(id=game_id)
+    loan = Loan.objects.get()
+
+    if request.method != 'POST':
+        #No data submitted; process data.
+        form = LoanForm()
+    else:
+        # POST data submitted; process data.
+        form = LoanForm(data=request.POST)
+        if form.is_valid():
+            reserve = form.save(commit=False)
+            reserve.owner = request.user
+            reserve.game = game
+
+            if loan.action == 'r':
+                game.status = 'r'
+            elif loan.action == 'l':
+                game.status = 'o'
+            else:
+                game.status = 'a'
+            reserve.save()
+            return redirect('mainapp:game', game_id=game_id)
+    
+    #Display a blank or invalid form.
+    context = {'game': game, 'form': form}
+    return render(request, 'mainapp/reserve.html', context)
+
+@login_required 
+def reserve(request, game_id):
+    """Add a new reservation to loan a particular boardgame."""
+    game = Game.objects.get(id=game_id)
+    
+    if request.method != 'POST':
+        #No data submitted; process data.
+        form = LoanForm()
+    else:
+        # POST data submitted; process data.
+        form = LoanForm(data=request.POST)
+        if form.is_valid():
+            reserve = form.save(commit=False)
+            reserve.owner = request.user
+            reserve.game = game
+            game.status = 'r'
+            
+            reserve.save()
+            return redirect('mainapp:game', game_id=game_id)
+    
+    #Display a blank or invalid form.
+    context = {'game': game, 'form': form}
+    return render(request, 'mainapp/reserve.html', context)
