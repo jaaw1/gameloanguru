@@ -1,0 +1,37 @@
+{% extends 'mainapp/base.html' %}
+
+{% block page_header %}
+  <h3>{{ game }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+       
+
+        <p>
+                
+                <a href="{% url 'mainapp:editgame' game.id %}">Edit game</a> -- 
+               
+        </p>
+        Title:
+        <div class="col-md-3 themed-grid-col">{{ game.name }}</div>
+        Owner:
+        <div class="col-md-3 themed-grid-col">{{ game.owner }}</div>
+        JEE
+        <div class="col-md-3 themed-grid-col">{{ game.date_added }}</div>
+        {% for loan in loans %}
+          <div class="card mb-3">
+                  <h4 class="card-header">
+                        {{ loan.date_added|date:'M d, Y H:i' }}
+                        <small><a href="{% url 'mainapp:editloan' loan.id %}">Edit loan</a></small>
+                  </h4>
+                  <div class="card-body">
+                        {{ loan.my_loan|linebreaks }}
+                  </div>
+          </div>
+               
+        {% empty %}
+                <p>This game has not been loaned yet.</p>
+        {% endfor %}
+        
+        
+{% endblock content%}

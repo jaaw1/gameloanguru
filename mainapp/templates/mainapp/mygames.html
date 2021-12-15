@@ -1,0 +1,43 @@
+{% extends "mainapp/base.html" %}
+{% block page_header %}
+<div style="background-color: #2E4C6D!important;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 style="color: #FC997C !important" class="display-4">My Games</h1>
+      <p style="color: #FC997C !important"></p>
+    </div>
+  </div>
+  {% endblock page_header %}
+  {% block content %}
+  <div class="container">
+       <div class="row">
+          <div class="col-md-3 themed-grid-col">Name</div>
+          <div class="col-md-3 themed-grid-col">Genre</div>
+          <div class="col-md-3 themed-grid-col">Owner </div>
+          <div class="col-md-3 themed-grid-col"></div>
+          <div class="col-md-3 themed-grid-col"></div>
+        </div>
+       <ul>
+        <div class="row">
+			
+          {% for game in allgames %}
+          <div class="col-md-3 themed-grid-col">{{ game.title }}</div>
+          <div class="col-md-3 themed-grid-col">{{ game.genre.name }}</div>
+          <div class="col-md-3 themed-grid-col">{{ game.owner}}</div>
+          <div class="col-md-3 themed-grid-col"></div>
+          
+        
+       {% empty %}
+         <div class="col-md-4 themed-grid-col"> No games added yet</div>
+       {% endfor %}
+        </div>
+       </ul>
+       <hr>
+       <div class="row mb-3"></div>
+          <div class="col-md-4 themed-grid-col">
+          <a class="btn btn-primary" href="{% url 'mainapp:addgame' %}" role="button">Add Game</a>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  {% endblock content %}

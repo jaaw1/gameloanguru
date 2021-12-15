@@ -1,0 +1,14 @@
+{% extends "mainapp/base.html"%}
+
+{% block content %}
+
+  <p><a href="{% url 'mainapp:game' game.id %}">{{ game }}</a></p>
+
+  <p>Edit game:</p>
+  <form action="{% url 'mainapp:editgame' game.id %}" method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button name="submit">Save changes</button>
+  </form>
+
+{% endblock content %}  

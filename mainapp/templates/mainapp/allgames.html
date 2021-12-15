@@ -1,0 +1,21 @@
+{% extends "mainapp/base.html"%}
+
+{% block page_header %}
+  <h1>All Games</h1>
+{% endblock page_header %}
+
+
+
+{% block content %}
+ <p>All games</p>
+   <ul>
+     {% for game in games %}
+    	<li>{{ game }}</li>
+     {% empty %}
+        <li>No games have been added yet.</li>
+     {% endfor %}
+   </ul>
+
+  
+
+{% endblock content %}

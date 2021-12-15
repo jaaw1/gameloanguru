@@ -1,0 +1,15 @@
+{% extends "mainapp/base.html %}
+
+{% block content %}
+
+  <p><a href="{% url 'mainapp:game' game.id %}">{{ game }}</a></p>
+
+  <p>Make a new loan:</p>
+  <form action="{% url 'mainapp:newloan' game.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+      
+      <button name="submit">Confirm</button>
+  </form>
+
+{% endblock content %}  
