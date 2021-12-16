@@ -81,11 +81,11 @@ def editgame(request, game_id):
 def new_loan(request, game_id):
     """Show a loan for a certain game."""
     game = Game.objects.get(id=game_id)
-    loan = Loan.objects.get()
+    #loan = Loan.objects.order_by('date_added') 
 
     if request.method != 'POST':
         #No data submitted; process data.
-        form = LoanForm()
+        form = LoanForm(instance=game)
     else:
         # POST data submitted; process data.
         form = LoanForm(data=request.POST)
