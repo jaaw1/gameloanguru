@@ -2,14 +2,14 @@
 {% block page_header %}
 <div style="background-color: #2E4C6D!important;" class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 style="color: #FC997C !important" class="display-4">Edit game</h1>
+      <h1 style="color: #FC997C !important" class="display-4">Edit game: {{ game.name }}</h1>
       <p style="color: #FC997C !important">A network for loaning games to and from users</p>
     </div>
   </div>
 {% endblock page_header %}
 {% block content %}
 
-  <p><a href="{% url 'mainapp:game' game.id %}">{{ game }}</a></p>
+<div class="container">
 
   <p>Edit game:</p>
   <form action="{% url 'mainapp:editgame' game.id %}" method='post'>
@@ -17,5 +17,5 @@
       {{ form.as_p }}
       <button name="submit">Save changes</button>
   </form>
-
+</div>  
 {% endblock content %}  

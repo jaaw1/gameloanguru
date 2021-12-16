@@ -14,8 +14,7 @@
 <div class="container">
         
         
-        <div><a href="{% url 'mainapp:editgame' game.id %}">Edit game</a> 
-         </div>      
+           
         
         <h2>Title:</h2>
         <div class="col-md-3 themed-grid-col">{{ game.name }}</div>
@@ -23,7 +22,7 @@
         <h2>Summary of the game:</h2>
         <div class="col-md-3 themed-grid-col">{{ game.summary }}</div>
         <hr>
-        <h2>Owner</h2>
+        <h2>Owner:</h2>
         <div class="col-md-3 themed-grid-col">{{ game.owner }}</div>
         <hr>
         Status:
