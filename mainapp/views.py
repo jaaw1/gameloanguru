@@ -7,13 +7,21 @@ from .models import Game, Loan
 from .forms import GameForm, LoanForm
 
 def index(request):
-    return render(request, 'mainapp/index.html')
-
+    allgames = Game.objects.order_by('date_added')
+    context = {'allgames' : allgames}
+    return render(request, 'mainapp/index.html', context)
+    
 def allgames(request):
     """Show all games."""
     games = Game.objects.order_by('date_added')  
     context = {'games': games}
     return render(request, 'mainapp/allgames.html', context)
+
+@login_required
+def mygames(request):
+    mygames = Game.objects.filter(owner=request.user).order_by('date_added')
+    context = {'mygames' : mygames}
+    return render(request, 'mainapp/mygames.html', context)
 
 @login_required
 def game(request, game_id):

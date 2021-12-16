@@ -1,15 +1,64 @@
-<p>
-    <a href="{% url 'mainapp:index' %}">Game Loan Guru</a>
-    <a href="{% url 'mainapp:allgames' %}">All Games</a>
-    <a href="{% url 'mainapp:addgame' %}">Add new Game</a>
-    {% if user.is_authenticated %}
-      Hello, {{ user.username }}
-      <a href="{% url 'users:logout' %}">Log out</a>
-    {% else %}
-      <a href="{% url 'users:register' %}">Register New User</a> -
-      <a href="{% url 'users:login' %}">Log in</a>
-    {% endif %}
-</p>
-{% block content %}
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit="no">
+    <title>GameLoanGuru</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+    
+    <nav style="background-color: #396EB0!important;" class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <a class="navbar-brand" href="{% url 'mainapp:index' %}">
+            <img src="{% static 'GameLoanGuru.png' %}" 
+            width="100" height="100" class="img-thumbnail" alt="GameloanguruLogo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+        <div  class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+               
+               
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <li class="nav-item">
+                    <a class="nav-link" style="color: #FC997C !important"  href="{% url 'mainapp:allgames' %}">All Games</a>
+                </li>
+                    <a class="nav-link" style="color: #FC997C !important" href="{% url 'mainapp:mygames' %}">My Games</a>
+                    
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #FC997C !important" href="{% url 'users:logout' %}">Logout,{{ user.username }}</a>
+                </li>
+               
+                    {% else %}
+                    <li class="nav-item" >
+                        <a class="nav-link" style="color: #FC997C !important" href="{% url 'users:register' %}">Register</a>
+                    </li>
+                    <li class="nav-item"></li>
+                    <a class="nav-link" style="color: #FC997C !important" href="{% url 'users:login' %}">Login</a>
+                    </li>
+                    {% endif %}
+               
+                
+            </ul>
+        </div>
+    </nav>
 
-{% endblock content %}
+
+    {% block page_header %}{% endblock page_header %}
+    {% block content %}{% endblock content %}
+</body>
+</html>
+
+
+
+
+

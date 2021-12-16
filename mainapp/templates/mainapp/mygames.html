@@ -5,24 +5,22 @@
       <h1 style="color: #FC997C !important" class="display-4">My Games</h1>
       <p style="color: #FC997C !important"></p>
     </div>
-  </div>
-  {% endblock page_header %}
-  {% block content %}
+</div>
+{% endblock page_header %}
+{% block content %}
   <div class="container">
        <div class="row">
           <div class="col-md-3 themed-grid-col">Name</div>
-          <div class="col-md-3 themed-grid-col">Genre</div>
-          <div class="col-md-3 themed-grid-col">Owner </div>
+          <div class="col-md-3 themed-grid-col">Summary</div>
           <div class="col-md-3 themed-grid-col"></div>
           <div class="col-md-3 themed-grid-col"></div>
         </div>
        <ul>
         <div class="row">
 			
-          {% for game in allgames %}
-          <div class="col-md-3 themed-grid-col">{{ game.title }}</div>
-          <div class="col-md-3 themed-grid-col">{{ game.genre.name }}</div>
-          <div class="col-md-3 themed-grid-col">{{ game.owner}}</div>
+          {% for game in mygames %}
+          <div class="col-md-3 themed-grid-col"><a href="{%url 'mainapp:game' game.id %}">{{ game.name }}</a></div>
+          <div class="col-md-3 themed-grid-col">{{ game.summary}}</div>
           <div class="col-md-3 themed-grid-col"></div>
           
         
@@ -40,4 +38,4 @@
       </div>
     </div>
  
-  {% endblock content %}
+{% endblock content %}

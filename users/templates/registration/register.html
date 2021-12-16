@@ -1,7 +1,14 @@
 {% extends 'mainapp/base.html' %}
-
+{% block page_header %}
+<div style="background-color: #2E4C6D!important;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 style="color: #FC997C !important" class="display-4">Register</h1>
+      <p style="color: #FC997C !important"></p>
+    </div>
+  </div>
+{% endblock page_header %}
 {% block content%}
-
+<div class="container"
   <form method="post" action="{% url 'users:register' %}">
     {% csrf_token %}
     {{ form.as_p }}
@@ -10,5 +17,5 @@
     <input type="hidden" name="next"
       value="{% url 'mainapp:index' %}" />
   </form>
-
+</div>
 {% endblock content %}
