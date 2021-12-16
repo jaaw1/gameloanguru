@@ -2,10 +2,16 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-  <h2>Log in to your account.</h2>
-  {% endblock page_header %}
+<div style="background-color: #2E4C6D!important;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 style="color: #FC997C !important" class="display-4">Log in to your account</h1>
+      <p style="color: #FC997C !important"></p>
+    </div>
+  </div>
+{% endblock page_header %}
 
 {% block content%}
+<div class="container">
   <form method="post" action="{% url 'users:login' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
@@ -16,5 +22,5 @@
     <input type="hidden" name="next"
       value="{% url 'mainapp:index' %}" />
 </form>
-
+</div>
 {% endblock content %}

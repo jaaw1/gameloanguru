@@ -1,10 +1,100 @@
-{% extends "mainapp/base.html"%}
+{% extends "mainapp/base.html" %}
 
 {% block page_header %}
-    Game Loan Guru index html
+<div style="background-color: #2E4C6D!important;" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 style="color: #FC997C !important" class="display-4">GameLoanGuru</h1>
+      <p style="color: #FC997C !important">A network for loaning games to and from users</p>
+    </div>
+  </div>
+  {% endblock page_header %}
+  {% block content %}
+  {% if user.is_authenticated %}
+ 
+  {% else %}
+  <div class="container">
+	<div class="row">
+        <!-- Boxes -->
+    	<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="box">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-thumbs-o-up"></i></div>
+					<div class="info">
+						<h3 class="title">Register</h3>
+						<p>
+							To add your own games to your library and start loaning games from other users
+						</p>
+						<div class="more">
+							<a class="btn btn-primary" href="{% url 'users:register' %}" role="button">Register</a>
+							
+						</div>
+					</div>
+				</div>
+				<div class="space"></div>
+			</div> 
+		</div>
+			
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="box">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-flag"></i></div>
+					<div class="info">
+						<h3 class="title">Get access to an extensive library</h3>
+    					<p>
+							Follow who has your games and when you need to return games you have loaned
+						</p>
+						
+					</div>
+				</div>
+				<div class="space"></div>
+			</div> 
+		</div>
+			
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="box">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-desktop"></i></div>
+					<div class="info">
+						<h3 class="title">Have fun</h3>
+    					<p>
+							Have fun with your friends and make new friends
+						</p>
+						
+					</div>
+				</div>
+				<div class="space"></div>
+			</div> 
+		</div>		    
+		<!-- /Boxes -->
+	</div>
+</div>
+{% endif %}
+<hr>
+<div class="container">
+	<h3>Check out what available games users have for loaning right now.</h3>
+	
+	   <div class="row">
+		<div class="col-md-3 themed-grid-col">Name</div>
+		<div class="col-md-3 themed-grid-col">Owner</div>
+		<div class="col-md-3 themed-grid-col">Summary</div>
+		<div class="col-md-3 themed-grid-col"></div>
+		
+	  </div>
+	  <hr>
+		<div class="row">
+			
+		   	{% for game in allgames %}
+			   <div class="col-md-3 themed-grid-col">{{ game.name }}</div>
+				<div class="col-md-3 themed-grid-col">{{ game.owner}}</div>
+				<div class="col-md-3 themed-grid-col">{{ game.summary}}</div>	
+				<div class="col-md-3 themed-grid-col"></div>				
+			{% empty %}
+				<div class="col-md-1 themed-grid-col">
+				No games available at the moment		
+				</div>
+				
+			{% endfor %}
+		</div>
+</div>
 
-{% endblock page_header %}
-
-{% block content %}
-  
 {% endblock content %}
