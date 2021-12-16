@@ -28,6 +28,8 @@
         Status:
         {% if game.status == 'a' %}
           Available <a href="{% url 'mainapp:new_loan' game.id %}">Loan this game:</a>
+        {% else %}
+        Not available
         {% endif %}
 
         <p></p>
