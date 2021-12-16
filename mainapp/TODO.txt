@@ -1,0 +1,7 @@
+TODO -list
+
+1. Genre Class missing
+2. Loan STATUS information doesn't load properly on templates
+3. Loan ACTIONS information doesn't load properly on templates 
+   (at least the last one should be visible)
+4. Restrictions on who can change loan STATUS
